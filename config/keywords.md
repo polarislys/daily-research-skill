@@ -5,6 +5,8 @@
 - `<!--` 开头的行忽略
 - `首次` 用 `YYYY-MM`
 - `track`：`product` 走产品剖析，`method` 走新方法，`news` 走新闻动态；可写多个，逗号分隔
+- `weight`（可选）：`high` | `normal` | `low`，Filter 阶段检索优先级，默认 `normal`
+- `depth`（可选）：`deep` | `scan`，倾向深写还是只进收件箱，默认由 track 推断
 - 同义词只写检索会用到的别称
 
 本表是**检索轴**，不是岗位词表。不要为了对齐 JD 加词。
@@ -26,6 +28,8 @@
   zh: <中文主检索>
   zh_aliases: <中文同义>
   track: product | method | news
+  weight: high | normal | low   # 可选
+  depth: deep | scan            # 可选
   首次: YYYY-MM
 ```
 

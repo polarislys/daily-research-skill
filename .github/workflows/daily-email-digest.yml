@@ -1,0 +1,51 @@
+name: Daily email digest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "output/**"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Digest date YYYY-MM-DD (empty = Asia/Shanghai today)"
+        required: false
+        type: string
+  schedule:
+    # 10:30 Asia/Shanghai ≈ 02:30 UTC（兜底：Automation 已 push 但 webhook 漏发时）
+    - cron: "30 2 * * *"
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    # 未配置 EMAIL_TO 时跳过，避免 fork 误跑
+    if: ${{ secrets.EMAIL_TO != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve date
+        id: date
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            echo "value=${{ github.event.inputs.date }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build digest
+        run: |
+          mkdir -p /tmp/digest
+          python3 scripts/build-daily-digest.py --date "${{ steps.date.outputs.value }}" --out-dir /tmp/digest
+          test -f /tmp/digest/digest.txt
+
+      - name: Send email (Resend or SMTP)
+        env:
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_TLS: ${{ secrets.SMTP_TLS }}
+        run: python3 scripts/send-email.py --digest-dir /tmp/digest --provider auto

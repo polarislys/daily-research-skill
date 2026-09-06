@@ -9,7 +9,7 @@ description: 按三类通道检索 Agent / 模型 / 方法动态，写成产品�
 
 **不要写岗位。** 读者要看懂产品怎么构成、新方法怎么转、新闻里的模型/发布到底改了什么。不要写「对 XX 岗意味着什么」「明天这个岗位该动手哪一层」「JD 怎么变」。
 
-检索轴是 [config/keywords.md](../../../config/keywords.md)。词会变，不要把旧词写死在本文件里。
+检索轴是 [config/keywords.md](../../../config/keywords.md)。过滤规则是 [config/profile.md](../../../config/profile.md)、[config/sources.md](../../../config/sources.md)、[config/rejected.md](../../../config/rejected.md)。词会变，不要把旧词写死在本文件里。
 
 ## 何时使用
 
@@ -31,30 +31,45 @@ description: 按三类通道检索 Agent / 模型 / 方法动态，写成产品�
 
 参考口吻（不是要抄原文）：[宝玉《Warp 如何让 Agent 自我进化》](https://mp.weixin.qq.com/s/1YaHaOC1veK3dJhlJyvE9Q)。它把 Claude 官方博文收成**一个问题**（Skill 怎么进化），讲清两条 Skill + 人类反馈，再列原则。我们落盘的一篇，体量可以相当于这种博文里的 **1～2 个问题**，写透即可。
 
-## 每日流程
+## 每日流程（两阶段）
 
-1. 读 [config/keywords.md](../../../config/keywords.md) 的概念行和产品行。无有效行则在 `output/新闻动态/检索失败/说明-YYYY-MM-DD.md` 写原因，仍提交推送。
-2. 日期用 **Asia/Shanghai 当天**。检索窗口约 **过去 24 小时**；产品剖析允许引用稍早的官方架构文，但必须标明日期，且当天要有新由头（新博文、新版本、新中文解读、新星标讨论）才开写或续写。
-3. **分形态检索，再分语种对齐：**
-   - 产品剖析：用产品专名（Codex、dsh、hermes、Warp…）+ `architecture` / `how we built` / `拆解` / `开源`
-   - 新方法：用开放句式 `we introduce`、`preprint`、方法名；不要只用旧 id 收窄
-   - 新闻动态：用 `announcing`、`released`、`发布`、`评测`、`hands-on`；股价只引用可打开的行情或公司稿
-   - 国外源用 `en` + `en_aliases`；国内源用 `zh` + `zh_aliases`；专有名词原样
-4. 从命中里挑**真正值得写的问题**。篇数不限：2 篇可以，10 篇也可以。没有材料就少写。禁止为凑数把 5 条无关新闻塞进一篇。
-5. 落盘路径（日期只在**文件名**，不在文件夹）：
+日期用 **Asia/Shanghai 当天**。检索窗口约 **过去 24 小时**；产品剖析允许引用稍早的官方架构文，但必须标明日期，且当天要有新由头才开写或续写。
+
+### Phase 1 — Filter（先写收件箱）
+
+1. 读 [config/keywords.md](../../../config/keywords.md)、[config/profile.md](../../../config/profile.md)、[config/sources.md](../../../config/sources.md)、[config/rejected.md](../../../config/rejected.md)。无有效 keywords 行也要写收件箱说明。
+2. **分形态检索**（与下表通道一致），收集候选，不要立刻深写：
+   - 产品剖析：产品专名 + `architecture` / `how we built` / `拆解` / `开源`
+   - 新方法：`we introduce`、`preprint`、方法名
+   - 新闻动态：`announcing`、`released`、`发布`、`评测`、`hands-on`
+   - 国外源用 `en` + `en_aliases`；国内源用 `zh` + `zh_aliases`
+3. 对每条候选打分（规则见 profile 的「综合分」），分为 **通过 / 待定 / 丢弃**。遵守 `inbox_max`。
+4. 落盘收件箱（日期只在文件名）：
+
+   ```text
+   output/收件箱/<YYYY-MM-DD>.md
+   ```
+
+   结构用 [templates/inbox.md](templates/inbox.md)。每条通过项写清：命中 id、track、score、建议深写、sources tier、URL。
+
+### Phase 2 — 深写（按预算）
+
+5. 从收件箱「建议深写: yes」按 score 排序，取前 **`deep_write_max`** 条（见 profile）。其余标 `queued` 写回待定区。
+6. 对选中项写长文。一篇只讲 **1～2 个问题点**。没有材料就少写，禁止凑篇。
+7. 落盘路径（日期只在**文件名**，不在文件夹）：
 
    ```text
    output/<形态>/<大主题>/<短标题>-<YYYY-MM-DD>.md
    ```
 
    - 形态必须是 `产品剖析` / `新方法` / `新闻动态` 之一
-   - 大主题是稳定类目：产品名（`Warp`、`Codex`）、方法族（`信用分配`、`Skill自进化`）、事件族（`模型发布`）
+   - 大主题是稳定类目：产品名、方法族、事件族
    - 短标题去掉 `/ \ : * ? " < > |`
-   - 同日同题更新原文件，不另开「最终版」
-   - 可另放 `sources.md` 在该大主题文件夹
-6. 更新 [output/README.md](../../../output/README.md)：按形态分组，最新日期在上。
-7. 跑「自我进化」：更新 [config/candidates.md](../../../config/candidates.md)；达标再改 keywords（中英一起补）。
-8. 提交并推送 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。只暂存 `output/`、`config/candidates.md`，以及本次改过的 `config/keywords.md`。
+   - 同日同题更新原文件；可另放 `sources.md` 在该大主题文件夹
+8. 在收件箱文末填「深写链接」列表；更新统计里的「实际深写」。
+9. 更新 [output/README.md](../../../output/README.md)：收件箱条目 + 按形态分组的文章，最新日期在上。
+10. 跑「自我进化」：更新 [config/candidates.md](../../../config/candidates.md)；达标再改 keywords。
+11. 提交并推送 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。暂存 `output/`、`config/candidates.md`，以及本次改过的 `config/keywords.md`、`config/rejected.md`。
 
 ## 选材
 
