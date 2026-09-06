@@ -35,9 +35,9 @@
 
 - id: harness
   en: agent harness
-  en_aliases: harness, agent loop, scaffolding
+  en_aliases: harness, agent loop, scaffolding, inner harness, outer harness
   zh: Agent Harness
-  zh_aliases: 智能体运行基座, 执行环, 智能体夹具
+  zh_aliases: 智能体运行基座, 执行环, 智能体夹具, 内层夹具, 外层夹具
   track: product, method
   首次: 2026-09
 
@@ -231,6 +231,22 @@
   zh: OpenSandbox
   zh_aliases: 阿里开源沙盒
   track: product
+  首次: 2026-09
+
+- id: Temporal-Agent-Harness
+  en: Temporal Agent Harness
+  en_aliases: outer harness, Temporal workflow agent
+  zh: Temporal Agent Harness
+  zh_aliases: Temporal 外层夹具
+  track: product
+  首次: 2026-09
+
+- id: GPT-6-Astra
+  en: GPT-6 Astra
+  en_aliases: gpt-6-astra, Astra
+  zh: GPT-6 Astra
+  zh_aliases: Astra
+  track: news
   首次: 2026-09
 
 - id: funding-track

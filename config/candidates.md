@@ -139,6 +139,91 @@
   status: watching
   note: 框架名，绑在 DeepSeek Harness 上。不新开 id。
 
+- token: BASM
+  en: Boundary-Aware Skill Memory
+  zh: 边界感知技能记忆
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2608.22339
+  kinds: paper
+  near: skill-rag
+  status: watching
+  note: 给 skill 加适用/风险/回避/恢复字段。与 skill-rag 的差是「选中了也不当无条件模板」。仅 1 篇。
+
+- token: Skill Imitation Trap
+  en: Skill Imitation Trap
+  zh: 技能模仿陷阱
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2608.22339
+  kinds: paper
+  near: skill-evolution
+  status: watching
+  note: 只从成功轨迹蒸馏时，检索越多越敢调错工具。失败模式名，先观察。
+
+- token: MASkills
+  en: MASkills
+  zh: 多智能体技能库优化
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.02094
+  kinds: paper
+  near: skill-evolution
+  status: watching
+  note: 优化对象是各 agent 的 SKILL.md 而不是权重。仅 1 篇+自报仓库。
+
+- token: Speculative Macro Commit
+  en: Speculative Macro Commit
+  zh: 推测宏提交
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.03236
+  kinds: paper
+  near: tool-use
+  status: watching
+  note: 快模型在隔离快照上预跑动作链，权威模型第一步对上再提交。本日未成篇。
+
+- token: NLIP
+  en: Natural Language Interaction Protocol
+  zh: 智能体自然语言交互协议
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.04135
+  kinds: paper
+  near: mcp
+  status: watching
+  note: Ecma 标准化的 agent 应用层协议，摘要称可叠在 HTTP/WebSocket/AMQP。与 MCP 的差需第二篇才能写清。本日未成篇。
+
+- token: AgentEvent
+  en: AgentEvent
+  zh: 智能体事件流
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 2
+  urls:
+    - https://temporal.io/blog/temporal-agent-harness-durable-agent-infrastructure
+    - https://github.com/temporal-community/temporal-agent-harness
+  kinds: news,repo
+  near: observability
+  status: watching
+  note: Temporal 外层把轨迹收成结构化事件。可能并入 observability alias。
+
 - token: LLM Wiki
   en: LLM Wiki
   zh: 由模型维护的交叉引用笔记库
@@ -230,6 +315,37 @@
   near: sandbox
   status: promoted
   note: 已从观察区晋升到 keywords 产品区。
+
+- token: Temporal Agent Harness
+  en: Temporal Agent Harness
+  zh: Temporal Agent Harness
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 2
+  urls:
+    - https://temporal.io/blog/temporal-agent-harness-durable-agent-infrastructure
+    - https://github.com/temporal-community/temporal-agent-harness
+  kinds: news,repo
+  near: harness
+  status: promoted
+  note: 外层夹具产品，已写入 keywords 产品区。官方文 2026-08-20，本日补拆。
+
+- token: GPT-6 Astra
+  en: GPT-6 Astra
+  zh: GPT-6 Astra
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 3
+  urls:
+    - https://openai.com/index/safety-overview-gpt-6-astra/
+    - https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html
+    - https://community.openai.com/t/introducing-gpt-6-astra-the-most-intelligent-and-aligned-model-in-the-world/1394703
+  kinds: news
+  near: foundation-model
+  status: promoted
+  note: 模型发布名，已写入 keywords 产品区，track: news。
 
 ## 已拒绝
 
