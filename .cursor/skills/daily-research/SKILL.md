@@ -89,11 +89,13 @@ description: 按三类通道检索 Agent / 模型 / 方法动态，写成产品�
 
 字数：**不卡 2000**。写透 1～2 个问题通常 2500～4500 汉字；超过 6000 就拆到同文件夹的下一篇。禁止注水，禁止没完没了的背景科普。
 
-结构按形态选用模板：
+结构按形态选用模板（**落盘前必读** [STYLE.md](STYLE.md)）：
 
 - 产品剖析 → [templates/product.md](templates/product.md)
 - 新方法 → [templates/method.md](templates/method.md)
 - 新闻动态 → [templates/news.md](templates/news.md)
+
+写作标杆：[宝玉《Warp 如何让 Agent 自我进化》](https://mp.weixin.qq.com/s/1YaHaOC1veK3dJhlJyvE9Q)——问题驱动、有叙事、术语在句子里解释，不要 wiki 填表体。
 
 三条共用底线：
 

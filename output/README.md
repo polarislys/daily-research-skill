@@ -58,7 +58,7 @@ git pull
 
 ### Skill记忆
 
-- [技能模仿陷阱与 BASM](新方法/Skill记忆/技能模仿陷阱与BASM-2026-09-06.md)
+- [Skill Imitation Trap 与 BASM](新方法/Skill记忆/技能模仿陷阱与BASM-2026-09-06.md)
 
 ### Skill自进化
 
