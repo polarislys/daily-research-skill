@@ -12,7 +12,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = REPO_ROOT / "output"
-INBOX_DIR = OUTPUT / "收件箱"
+INBOX_GLOB = "收件箱-*.md"
 GITHUB_REPO = "https://github.com/polarislys/daily-research-skill"
 
 
@@ -41,26 +41,41 @@ def parse_inbox_stats(body: str) -> dict[str, str]:
 
 
 def parse_deep_links(body: str) -> list[str]:
-    section = re.search(r"## 深写链接\s*\n+(```text\n(.*?)\n```)", body, re.S)
+    section = re.search(r"## 深写链接.*?\n+(.*?)(?:\n## |\Z)", body, re.S)
     if not section:
         return []
     lines = []
-    for line in section.group(2).splitlines():
+    for line in section.group(1).splitlines():
         line = line.strip()
         if line.startswith("- "):
-            lines.append(line[2:])
+            m = re.search(r"\[([^\]]+)\]\(([^)]+)\)", line)
+            if m:
+                lines.append(f"{m.group(1)} → {m.group(2)}")
+            else:
+                lines.append(line[2:])
     return lines
+
+
+def find_inbox_path(date: str) -> Path:
+    return OUTPUT / f"收件箱-{date}.md"
 
 
 def find_articles_for_date(date: str) -> list[dict[str, str]]:
     articles: list[dict[str, str]] = []
-    for md in sorted(OUTPUT.rglob(f"*-{date}.md")):
-        if "收件箱" in md.parts:
+    for md in sorted(OUTPUT.glob(f"*-{date}.md")):
+        if md.name.startswith("收件箱-"):
             continue
         rel = md.relative_to(OUTPUT)
-        parts = rel.parts
-        track = parts[0] if parts else ""
-        theme = parts[1] if len(parts) > 2 else ""
+        body = read_text(md)
+        track, theme = "", ""
+        if body.startswith("---"):
+            fm = re.search(r"^---\n(.*?)\n---", body, re.S)
+            if fm:
+                for line in fm.group(1).splitlines():
+                    if line.startswith("形态:"):
+                        track = line.split(":", 1)[1].strip()
+                    if line.startswith("主题:"):
+                        theme = line.split(":", 1)[1].strip()
         title = md.stem.replace(f"-{date}", "")
         articles.append(
             {
@@ -82,7 +97,7 @@ def first_heading(md_path: Path) -> str:
 
 
 def build_digest(date: str) -> tuple[str, str, str]:
-    inbox_path = INBOX_DIR / f"{date}.md"
+    inbox_path = find_inbox_path(date)
     inbox_body = read_text(inbox_path)
     stats = parse_inbox_stats(inbox_body)
     deep_links = parse_deep_links(inbox_body)
@@ -114,7 +129,7 @@ def build_digest(date: str) -> tuple[str, str, str]:
         text_lines.append("  （无当日深写文件）")
 
     if inbox_path.is_file():
-        text_lines.extend(["", "【收件箱全文】", f"  {GITHUB_REPO}/blob/main/output/收件箱/{date}.md"])
+        text_lines.extend(["", "【收件箱全文】", f"  {GITHUB_REPO}/blob/main/output/收件箱-{date}.md"])
 
     text_body = "\n".join(text_lines)
 
@@ -138,7 +153,7 @@ def build_digest(date: str) -> tuple[str, str, str]:
         html_parts.append("</ul>")
 
     if inbox_path.is_file():
-        inbox_url = f"{GITHUB_REPO}/blob/main/output/收件箱/{date}.md"
+        inbox_url = f"{GITHUB_REPO}/blob/main/output/收件箱-{date}.md"
         html_parts.append(f'<p><a href="{inbox_url}">查看完整收件箱</a></p>')
 
     html_body = "\n".join(html_parts)
