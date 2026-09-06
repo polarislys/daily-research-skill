@@ -1,15 +1,13 @@
 # 调研产物
 
-Cloud Agent 每天 10:00（Asia/Shanghai）把简报写到这里并推送。
+每天 10:00（Asia/Shanghai）Cloud Agent 按 `config/keywords.md` 检索过去 24 小时，写成约 2000 字的深挖文章。
 
-本机查看：
+目录命名：`主题-日期`，例如 `harness工程化-2026-09-06/article.md`。
 
 ```bash
 git pull
 ```
 
-然后打开对应日期的文件，或直接在 GitHub 网页上看。
+## 文章列表
 
-## 简报列表
-
-_还没有定时跑出来的简报。激活 Automation 后，这里会出现按日期倒序的链接。_
+_还没有成稿。下次定时跑或手动「运行 daily-research」后，这里按日期倒序出现链接。_

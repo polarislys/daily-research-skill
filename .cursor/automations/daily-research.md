@@ -1,48 +1,25 @@
 # Cursor Automation 配置（复制到网页）
 
-在 https://cursor.com/automations/new 新建 Automation，按下面填。
-Cloud Agent 不能代你点保存，需要你在已登录的 Cursor 账号里激活一次。
+已有任务：https://cursor.com/automations/285afd37-a9b1-11f1-b532-320a589b8025  
+名称：`Daily research 10:00 CST`。改 Prompt 时用下面这一段覆盖。
 
-## 基本信息
-
-- 名称：`Daily research 10:00 CST`
-- 权限：Private（记在你个人用量上）
-- 状态：保存后立刻启用
-
-## Trigger
-
-- 类型：Scheduled
-- 时区：Asia/Shanghai
-- 时间：每天 10:00
-- 若只有 cron、且按 UTC：`0 2 * * *`（北京时间 10:00）
-
-## 仓库
-
-- 必须选 **单个仓库**：GitHub 上的 `daily-research-skill`
-- 分支：`main`
-- 不要选「No repository」，否则产物无法提交
-
-## 工具
-
-- 允许提交并推送到 `main`
-- 关闭「创建 Pull Request」（个人日报仓库直接落主分支）
-- 需要联网搜索
-
-## Prompt（整段粘贴）
+## Prompt
 
 ```text
 运行本仓库的 daily-research skill（.cursor/skills/daily-research/SKILL.md）。
 
-1. 读取 config/topics.md 的主题。
-2. 按 Asia/Shanghai 的今天日期，调研过去约 24 小时的信息。
-3. 把简报写到 output/YYYY-MM-DD.md，并更新 output/README.md。
-4. 提交并推送到 main。提交说明：Daily research briefing for YYYY-MM-DD
-5. 不要开 Pull Request。不要改 skill，除非主题文件缺失。
-6. 用简体中文。每条事实带来源 URL。搜不到就在当天文件里写明，仍然提交。
+1. 读取 config/keywords.md，按关键词检索过去约 24 小时的中英文信息。
+2. 日期用 Asia/Shanghai 的今天。
+3. 只挑 2～4 个问题点，写成 2～4 篇金字塔文章；每篇 1～2 个问题，约 2000 汉字，向下挖两层并解释术语。
+4. 每篇存到 output/主题-YYYY-MM-DD/article.md，更新 output/README.md。
+5. 若有稳定新词，按 skill 规则更新 config/keywords.md。
+6. 提交并推送到 main。说明：Daily research: YYYY-MM-DD
+7. 不要开 Pull Request。不要改 SKILL.md。
+8. 简体中文。每条事实带 URL。搜不到也要留一篇说明并推送。
 ```
 
-## 验收
+## 仓库
 
-- 激活后可用「Run now」先跑一次
-- 仓库 `output/` 应出现当天 markdown
-- 本机 `git pull` 能看到简报
+- GitHub：`polarislys/daily-research-skill`
+- 分支：`main`
+- 关闭自动开 PR
