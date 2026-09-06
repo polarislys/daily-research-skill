@@ -199,16 +199,16 @@
 
 - id: new-harness-product
   en: new agent harness product
-  en_aliases: dsh
+  en_aliases: dsh, DeepSeek Harness
   zh: 新harness产品
-  zh_aliases: dsh
+  zh_aliases: dsh, DeepSeek Harness
   首次: 2026-09
 
 - id: new-agent-product
   en: new agent product
-  en_aliases: hermes
+  en_aliases: hermes, hermes-agent
   zh: 新agent产品
-  zh_aliases: hermes
+  zh_aliases: hermes, hermes-agent
   首次: 2026-09
 
 - id: funding-track
