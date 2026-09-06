@@ -50,7 +50,7 @@ description: 按三类通道检索 Agent / 模型 / 方法动态，写成产品�
    output/收件箱/<YYYY-MM-DD>.md
    ```
 
-   结构用 [templates/inbox.md](templates/inbox.md)。每条通过项写清：命中 id、track、score、建议深写、sources tier、URL。
+   结构用 [templates/inbox.md](templates/inbox.md)。**链接必须写成 Markdown `[文字](https://...)`**，深写链到相对路径；禁止把 URL 放在代码块里。
 
 ### Phase 2 — 深写（按预算）
 

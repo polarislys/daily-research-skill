@@ -15,48 +15,35 @@
 
 ## 通过
 
-<!-- 复制下面卡片块，每条一条 -->
+每条用 **Markdown 列表 + 可点击链接**，不要用 `card` 代码块（代码块里的 URL 无法跳转）。
 
-```card
-- id: <keywords 中的 id 或产品名>
-- title: <一句话判断>
-- track: 产品剖析 | 新方法 | 新闻动态
-- score: <0-10>
-- 建议深写: yes | no
-- domains: <profile 兴趣域 id，逗号分隔>
-- sources: tier1 | <主 URL>
-- urls:
-  - 
-- 新鲜度: 24h | 续写
-- note: <可选，机制上值得看的一点>
+```markdown
+1. **<一句话标题>**（<score> 分，建议深写：yes/no）
+   - 形态：<产品剖析 | 新方法 | 新闻动态> | 命中 id：<id>
+   - 一手：[<来源简称>](<完整 https:// URL>)
+   - 更多：[<第二条来源>](<URL>)（可选）
+   - 深写：[<短标题>](<相对路径，如 产品剖析/Warp/xxx-YYYY-MM-DD.md>)（Phase 2 完成后填）
+   - 备注：<可选>
 ```
 
 ## 待定
 
-<!-- 材料弱、需次日补源、或已达 deep_write_max 排队 -->
-
-```card
-- id:
-- title:
-- track:
-- score:
-- 建议深写: queued | maybe
-- reason: <为何未深写>
-- sources: tier2 | <url>
+```markdown
+1. **<标题>**（<score> 分，queued/maybe）
+   - 原因：<为何未深写>
+   - 一手：[<来源>](<完整 https:// URL>)
 ```
 
 ## 丢弃
 
-<!-- 简短即可，便于缩网 -->
-
-```text
-- <标题或关键词> — <原因>（命中 rejected / 无 URL / 重复）
+```markdown
+- **<标题>** — <原因>（[来源](<URL>) 如有）
 ```
 
 ## 深写链接
 
-<!-- Phase 2 完成后填写，指向当日新建或更新的 md -->
+用 Markdown 列表，链到相对路径：
 
-```text
-- [形态] 大主题 / 文件名.md
+```markdown
+- [Warp：两条 Skill 怎么转](产品剖析/Warp/两条Skill加人类反馈-2026-09-06.md)
 ```

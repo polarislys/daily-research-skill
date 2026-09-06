@@ -1,50 +1,40 @@
-# GitHub Copilot coding agent 的 harness 是「GitHub Actions 上的异步 PR 工厂」
+# GitHub Copilot coding agent：你把任务丢给它，它后台开 PR
 
-形态：产品剖析  
-大主题：GitHub-Copilot-Agent  
-日期：2026-09-06（Asia/Shanghai）  
-问题点：异步 agent 跑在哪、人怎么介入、和终端 Copilot CLI 差在哪？
+**一句话**：付费 Copilot 用户可委派任务；Agent 在 GitHub 托管环境里跑（靠 Actions），做完交 **草稿 PR**，你在评论里让它继续改。
 
-## 先说清楚
+日期：2026-09-06
 
-GitHub 在 2025-09-25 宣布 [Copilot coding agent 全面可用（GA）](https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/)：付费 Copilot 用户可把任务 **委派给 Copilot**，它在 **独立开发环境** 里后台工作，通过 **GitHub Actions** 驱动，完成后开 **draft PR** 并请求人工 review；人可在 PR 上评论让 Copilot 继续改。
+---
 
-这和 Copilot 补全单行代码的差别是：整单 feature / bugfix / 补测试 / 文档更新被当成 **长时程自治任务**；harness 核心是 **平台托管的 Actions runtime + PR 协议**，而不是本地终端里的 REPL。
+## 这是个啥
 
-## 问题只圈这些
+2025-09-25 [GA 公告](https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/)：Copilot **coding agent** 全面可用。能做的事包括：新功能、修 bug、补测试、还技术债、改文档。
 
-1. 任务从哪进、artifact 是什么（PR）、人卡在哪？  
-2. HN 上对 Copilot CLI 的反馈暴露了哪些 harness 缺口？
+和终端里补全代码不同：这是一整条 **异步任务**，交付物是 PR。
 
-## 它由什么构成
+## 怎么用（入口）
 
-**入口多样化。** 可分配 issue、用全站 Agents 面板、或在 VS Code 点「Delegate to coding agent」。解决「agent 只能从 CLI 启动」的摩擦。
+- 把 issue 分配给 Copilot  
+- 全站 Agents 面板  
+- VS Code 里「Delegate to coding agent」
 
-**异步与隔离。** agent 在自有 dev environment 跑，不占用开发者本机 shell。与 **sandbox** 的关系：隔离由 GitHub 托管环境承担，具体权限边界以官方 Policies 为准（Business/Enterprise 需管理员开启）。
+企业版可能要管理员在 Policy 里先打开。
 
-**PR 作为状态工件。** 所有变更落在 draft PR；review 评论是反馈通道。这和 Anthropic 长程 harness「进度文件」同族：**git 上的可 diff 对象** 承载状态，而不是聊天窗口。
+## 和 Copilot CLI 别混
 
-**任务类型（官方列举）。** 新功能、修 bug、还技术债、提测试覆盖、更新文档——偏软件工程闭环，不是泛聊天。
+[HN 上](https://news.ycombinator.com/item?id=45377734) 有人试 **Copilot CLI**（终端版）：切换模型要靠环境变量、危险命令护栏不清楚、UI 还糙。  
+**GA 的是云上的 coding agent**；CLI 是另一条线，成熟度不一样。
 
-**Copilot CLI（公测，HN 2025-09）作为姊妹形态。** 终端里跑 agent，默认 Claude Sonnet 4，可用环境变量 `COPILOT_MODEL=gpt-5` 切模型。HN 用户反馈：缺 `/model`、上下文余量展示弱、危险命令（如 `rm -rf`）护栏不透明、工具输出 live 刷新会花屏。说明 **同一品牌的 harness 在「云异步 PR」与「本地 CLI」两条线成熟度不一致**——GA 的是 coding agent，CLI 仍偏 bare。
+## 机制上可记住的一点
 
-## 理念怎么落进机制
+异步 Agent 的默认交接物是 **PR**，不是聊天里一句「我做完了」。
 
-主线：**把 agent 嵌进已有代码协作协议（issue → PR → review），而不是新造一套聊天工单。**
+## 链接
 
-对企业客户，Policy 开关决定能否用 coding agent——harness 不仅是技术环，还是 **治理环**。机制上可复查：**异步 agent 的默认可交付物是 PR，不是「我说做完了」。**
+- [Copilot coding agent GA（GitHub 官方）](https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/)
+- [HN：Copilot CLI 讨论](https://news.ycombinator.com/item?id=45377734)
 
-## 证据
+## 没核实清楚的
 
-- 官方：
-  - [Copilot coding agent is now generally available](https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/)（2025-09-25）
-  - GitHub Docs：Copilot coding agent（博文链接）
-- 论坛：
-  - [HN: GitHub Copilot CLI public preview](https://news.ycombinator.com/item?id=45377734)（模型切换、护栏、UI 缺口）
-- 视频：未见本日逐条转写。
-
-## 未证实
-
-- 「独立开发环境」的具体镜像、网络 egress、密钥注入方式，公开文档粒度有限。  
-- GA 公告日期为 2025-09-25；若读者环境尚未开放，以账户类型与 Policy 为准。  
-- HN 对 CLI 的体验为匿名用户样本，不代表 GA coding agent 全貌。
+- 托管环境具体权限、网络 egress，公开文档粒度有限。
+- 你的账号类型若尚未开放，以 Policy 和订阅为准。
