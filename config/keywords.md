@@ -12,8 +12,8 @@
 
 | 来源 | 用哪一列 | 例子 |
 |---|---|---|
-| 英文：GitHub、官方博客、HN、YouTube、美厂 careers | `en` + `en_aliases` | `agent harness`, `eval pipeline` |
-| 中文：官网招聘、微信/知乎、B 站、国内厂技术号 | `zh` + `zh_aliases` | `智能体运行基座`, `评测流水线` |
+| 英文：论文、官方博客、HN、GitHub、YouTube | `en` + `en_aliases` | `agent harness`, `eval pipeline` |
+| 中文：论文译介、厂技术号、知乎/公众号、B 站 | `zh` + `zh_aliases` | `智能体运行基座`, `评测流水线` |
 | 产品名、协议名、仓库名 | 专有名词原样 | `MCP`, `Codex`, `dsh`, `hermes` |
 
 一条概念 = 一层能力。中英文是**同一概念的检索面**，不是两个主题。

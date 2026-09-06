@@ -125,16 +125,20 @@ description: 按 config/keywords.md 检索过去 24 小时的 Agent 工程、训
 
 ### 开采（依赖 keywords）
 
-用已有 `id` 的中英检索词搜 24h 材料。从标题、JD 原文、README、论文摘要里**摘共现新串**（岗位名、方法名、产品名）。已在 keywords 或 candidates 的跳过。其余写入 candidates，`near` 填最像的旧 id。
+用已有 `id` 的中英检索词搜 24h 材料。从**论文摘要、资讯标题、发布博客、README**里摘共现新串（方法名、产品名、新协议）。已在 keywords 或 candidates 的跳过。其余写入 candidates，`near` 填最像的旧 id。招聘 JD 里的共现只作印证，不当发现来源。
 
 ### 探索（禁止只用旧 id 当查询）
 
-每天至少跑完下面 4 条，查询用**角色/渠道/时间**，不要复制 keywords 列表：
+新词先出现在论文和资讯，**进招聘页时往往已经旧了**。探索按优先级，每天至少跑完 1～3；第 4 条可选、降权。
 
-1. **招聘页**：OpenAI、Anthropic、Cursor、字节、腾讯、阿里、月之暗面 careers 近 24h/「最新」列表。抽出岗位标题和职责里的新名词。
-2. **新仓库**：GitHub 近 24h，主题或描述含 `agent` / `agentic` / `智能体`（不要再加 harness 等旧词收窄）。看 README 自造词和产品名。
-3. **时间线**：HN、arXiv（cs.AI / cs.CL / cs.SE）、机器之心/36 氪首页里和 Agent、模型、评测相关的新标题。
-4. **开放句式**（中英各搜一轮）：`we're hiring agent`、`announcing agent`、`招聘 Agent 工程师`、`发布 智能体`、`new job title agent`。
+查询用**渠道/时间/开放句式**，不要复制 keywords 列表。
+
+1. **论文（最高）**：arXiv 近 24h，`cs.AI` / `cs.CL` / `cs.SE` / `cs.LG`；再扫 ACL/ICML/NeurIPS 当日页面或预印本标题。抽出摘要里的自造方法名、新评测名、新协议名。
+2. **国内外资讯（最高）**：HN、公司研究/产品博客（OpenAI、Anthropic、Google、DeepSeek 等）、机器之心、36 氪、量子位、InfoQ 中文。看「发布 / announcing / introduce / 开源」类标题，不要看招聘栏目。
+3. **新仓库与视频（高）**：GitHub 近 24h，描述含 `agent` / `agentic` / `智能体`（不要再加 harness 等旧词收窄）；YouTube / B 站近 24h 同类标题。看 README 和视频简介里的自造词、产品名。
+4. **招聘（低，只印证）**：OpenAI / Anthropic / 字节 / 腾讯等 careers。JD 里出现的「新词」默认当作**市场已用一段时间的滞后信号**：可给 candidates 加一次来源，**不能单独触发晋升**，也不要据此开新 id。
+
+开放句式优先用发布语，少用招聘语。中英各一轮即可：`announcing agent`、`we introduce`、`preprint agent`、`发布 智能体`、`开源 agent`、`新协议`。不要把 `we're hiring` / `招聘 Agent` 当探索主查询。
 
 探索命中若能成篇，可以写进当天 2～4 篇里的一篇，主题用新词，并在文内标明「候选，尚未进主词表」。
 
