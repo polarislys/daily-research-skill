@@ -56,7 +56,7 @@ Cursor Automation **不能直接发邮件**。推荐链路：
 ```text
 10:00 Automation 跑 skill → push main
        ↓
-GitHub Actions（Daily email digest）读收件箱 + 当日文章 → 发到你邮箱
+GitHub Actions `Daily email digest` 会读收件箱 + 当日文章发 digest。workflow 文件在 `scripts/daily-email-digest.workflow.yml`，需**手动复制**到 `.github/workflows/`（GitHub token 需 `workflow` 权限才能由 agent 直接推送 workflow）。
 ```
 
 ### 配置步骤

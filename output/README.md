@@ -27,7 +27,20 @@ git pull
 
 ### Codex
 
+- [环境约束代替手搓编排](产品剖析/Codex/环境约束代替手搓编排-2026-09-06.md)（2026-09-06）
 - [开源 harness 三层接入](产品剖析/Codex/开源harness三层接入-2026-09-06.md)（2026-09-06）
+
+### Claude-Managed-Agents
+
+- [脑手分离与按需沙盒](产品剖析/Claude-Managed-Agents/脑手分离与按需沙盒-2026-09-06.md)（2026-09-06）
+
+### Anthropic-Harness
+
+- [Planner 与 Evaluator 拆环](产品剖析/Anthropic-Harness/Planner与Evaluator拆环-2026-09-06.md)（2026-09-06）
+
+### GitHub-Copilot-Agent
+
+- [Actions 异步 PR 环](产品剖析/GitHub-Copilot-Agent/Actions异步PR环-2026-09-06.md)（2026-09-06）
 
 ### DeepSeek-Harness
 
@@ -53,9 +66,14 @@ git pull
 
 ### 信用分配
 
+- [iStar 隐式步奖励](新方法/信用分配/iStar隐式步奖励-2026-09-06.md)（2026-09-06）
 - [TIGPO 与 PGPO](新方法/信用分配/TIGPO与PGPO-2026-09-06.md)（2026-09-06）
 
 ## 新闻动态
+
+### Replit-Agent-3
+
+- [浏览器自测与自修复](新闻动态/Replit-Agent-3/浏览器自测与自修复-2026-09-06.md)（2026-09-06）
 
 ### GPT-6-Astra
 

@@ -38,6 +38,78 @@
 
 ## 在观察
 
+- token: iStar
+  en: implicit step rewards for agentic RL
+  zh: 隐式步奖励 agentic RL
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2509.19199
+  kinds: paper
+  near: agent-training
+  status: watching
+  note: 轨迹 DPO 隐式 PRM，可与 GRPO 拼接。仅 1 篇预印本。
+
+- token: TEMPO
+  en: Tree-Estimated Mean Prefix Value for Policy Optimization
+  zh: 前缀树均值前缀价值策略优化
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2509.18314
+  kinds: paper
+  near: agent-training
+  status: watching
+  note: P2T 前缀树 + 分支 token TD 修正，critic-free。排队深写。
+
+- token: GitHub Copilot coding agent
+  en: Copilot coding agent
+  zh: Copilot 编码 agent
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 2
+  urls:
+    - https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/
+    - https://news.ycombinator.com/item?id=45377734
+  kinds: news
+  near: harness
+  status: watching
+  note: 产品名，GA 2025-09-25。是否进 keywords 产品区待观察是否持续出现在资讯。
+
+- token: Claude Managed Agents
+  en: Claude Managed Agents
+  zh: Claude 托管 Agent
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 1
+  sources: 1
+  urls:
+    - https://www.anthropic.com/engineering/managed-agents
+  kinds: news
+  near: agent-runtime
+  status: watching
+  note: 托管 harness 产品。与 agent-runtime 概念重叠，可能作产品 alias。
+
+- token: harness engineering
+  en: harness engineering
+  zh: 夹具工程
+  first: 2026-09-06
+  last: 2026-09-06
+  days: 2
+  sources: 2
+  urls:
+    - https://openai.com/index/harness-engineering/
+    - https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+  kinds: news
+  near: harness
+  status: watching
+  note: 2026 行业术语，可能只作 harness id 的 alias，不新开概念 id。
+
 - token: TIGPO
   en: Temporal Instance-Graph Policy Optimization
   zh: 跨更新实例图策略优化
