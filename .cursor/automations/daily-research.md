@@ -12,7 +12,7 @@
 2. 日期用 Asia/Shanghai 的今天。
 3. 只挑 2～4 个问题点，写成 2～4 篇金字塔文章；每篇 1～2 个问题，约 2000 汉字，向下挖两层并解释术语。
 4. 每篇存到 output/主题-YYYY-MM-DD/article.md，更新 output/README.md。
-5. 若有稳定新词，按 skill 规则更新 config/keywords.md。
+5. 必须跑 skill 里的「探索通道」（招聘页、新仓库、时间线、开放句式），新词写入 config/candidates.md；达到阈值再晋升到 config/keywords.md。
 6. 提交并推送到 main。说明：Daily research: YYYY-MM-DD
 7. 不要开 Pull Request。不要改 SKILL.md。
 8. 简体中文。每条事实带 URL。搜不到也要留一篇说明并推送。

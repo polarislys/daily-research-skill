@@ -37,8 +37,8 @@ description: 按 config/keywords.md 检索过去 24 小时的 Agent 工程、训
 
    主题用短中文或英文词，去掉 `/ \ : * ? " < > |`。同日同主题加 `-2`。目录内可另放 `sources.md`（链接清单）。
 7. 更新 [output/README.md](../../../output/README.md)：最新日期在上，链到各篇文章。
-8. 按 keywords 文内「维护规则」决定是否改对照表（新词必须中英两列一起补）。
-9. 提交并推送到 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。只暂存 `output/` 和本次改过的 `config/keywords.md`。
+8. **先开探索通道，再维护词表**（见「自我进化」）。更新 [config/candidates.md](../../../config/candidates.md)；达到阈值再改 [config/keywords.md](../../../config/keywords.md)（中英两列一起补）。
+9. 提交并推送到 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。只暂存 `output/`、`config/candidates.md`，以及本次晋升过的 `config/keywords.md`。
 
 检索失败也要留下当天一篇说明文并推送，让日程有痕迹。
 
@@ -119,13 +119,36 @@ description: 按 config/keywords.md 检索过去 24 小时的 Agent 工程、训
 
 用户点名的例（dsh、hermes）只当「产品信号」检索，证实后再写，不要把传闻写成已发布。
 
-## 关键词维护
+## 自我进化：旧词开采 + 新词探索
 
-每日结束看 [config/keywords.md](../../../config/keywords.md)：
+只靠 keywords 检索，新词出现概率会偏低——这是闭环，不是疏忽。每日必须做两件事：**用旧词挖深（开采）**，**不靠旧词找叫法（探索）**。新词先记账，达标再晋升，禁止「今天看到一次就改主词表」。
 
-- 新词在 2+ 独立一手来源里稳定出现 → 追加，标 `（首次：YYYY-MM）`
-- 旧词 30 天无命中且被更精确的词替代 → 移到「降权」
-- 不要改本 SKILL.md，除非用户明确要求改写作规则
+### 开采（依赖 keywords）
+
+用已有 `id` 的中英检索词搜 24h 材料。从标题、JD 原文、README、论文摘要里**摘共现新串**（岗位名、方法名、产品名）。已在 keywords 或 candidates 的跳过。其余写入 candidates，`near` 填最像的旧 id。
+
+### 探索（禁止只用旧 id 当查询）
+
+每天至少跑完下面 4 条，查询用**角色/渠道/时间**，不要复制 keywords 列表：
+
+1. **招聘页**：OpenAI、Anthropic、Cursor、字节、腾讯、阿里、月之暗面 careers 近 24h/「最新」列表。抽出岗位标题和职责里的新名词。
+2. **新仓库**：GitHub 近 24h，主题或描述含 `agent` / `agentic` / `智能体`（不要再加 harness 等旧词收窄）。看 README 自造词和产品名。
+3. **时间线**：HN、arXiv（cs.AI / cs.CL / cs.SE）、机器之心/36 氪首页里和 Agent、模型、评测相关的新标题。
+4. **开放句式**（中英各搜一轮）：`we're hiring agent`、`announcing agent`、`招聘 Agent 工程师`、`发布 智能体`、`new job title agent`。
+
+探索命中若能成篇，可以写进当天 2～4 篇里的一篇，主题用新词，并在文内标明「候选，尚未进主词表」。
+
+### 记账与晋升
+
+更新 [config/candidates.md](../../../config/candidates.md)：
+
+- 已有 `token`：刷新 `last`、`days`、`sources`、`urls`
+- 新 `token`：`status: watching`，补 en/zh（能猜到的对照）
+- 达到该文件里的**晋升阈值**，且能写清与旧 id 的差别 → 写入 keywords 完整对照行，candidates 标 `promoted`
+- 只是旧 id 的别称 → 加到该 id 的 `en_aliases` 或 `zh_aliases`，candidates 标 `rejected`，note 写「并入 id: …」
+- 旧 keywords id 连续 30 天开采+探索都无命中、且已被更精确 id 替代 → 移到 keywords「降权」
+
+不要改本 SKILL.md，除非用户明确要求改写作或进化规则。
 
 ## 硬性规则
 
