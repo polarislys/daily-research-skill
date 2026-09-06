@@ -35,7 +35,7 @@ git pull
 
 ### Temporal-Agent-Harness
 
-- [外层夹具与可持久执行](产品剖析/Temporal-Agent-Harness/外层夹具与可持久执行-2026-09-06.md)
+- [外层 harness 与可持久执行](产品剖析/Temporal-Agent-Harness/外层夹具与可持久执行-2026-09-06.md)
 
 ### Claude-Managed-Agents
 
