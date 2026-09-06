@@ -17,23 +17,28 @@ description: 按 config/keywords.md 检索过去 24 小时的 Agent 工程、训
 
 ## 每日流程
 
-1. 读 [config/keywords.md](../../../config/keywords.md)。无有效词则在 `output/检索失败-YYYY-MM-DD/article.md` 写明原因，仍提交推送。
-2. 日期用 **Asia/Shanghai 当天**。检索窗口是 **过去约 24 小时**（中英都搜）。
-3. 对每个关键词做检索，素材类型必须覆盖（有就收，没有在文末写「未覆盖」）：
+1. 读 [config/keywords.md](../../../config/keywords.md) 的**概念行**（`id` + 中英检索列）。无有效概念则在 `output/检索失败-YYYY-MM-DD/article.md` 写明原因，仍提交推送。
+2. 日期用 **Asia/Shanghai 当天**。检索窗口是 **过去约 24 小时**。
+3. **分语种检索，按同义词对齐，不要当成两个主题：**
+   - 国外源（GitHub、美厂博客/careers、HN、YouTube）：用该概念的 `en` + `en_aliases`
+   - 国内源（厂官网、招聘站、知乎/公众号、B 站）：用 `zh` + `zh_aliases`
+   - 产品名、协议名（MCP、dsh、hermes）中英都用原名
+   - 一篇文章只讨论 **一个 id**（或紧密相关的两个），中英命中合并写，规范名用 `id`
+4. 对每个概念收集素材（有就收，没有在文末写「未覆盖」）：
    - 新工程代码仓库
    - 知识博客 / 论文解读
    - 视频讲解（YouTube、Bilibili 等）
    - 大佬常看的公司动态：新技术、新训练模型、新 harness（如 dsh）、新 agent 产品（如 hermes）、新投资赛道
    - 工程师工作模式变化：堆最强模型 → 优秀模型 + harness 工程 → 垂域落地
-4. **不要写总览流水账。** 从命中里只挑 **2～4 个真正值得挖的问题点**，合并成 **2～4 篇文章**。每篇只分析 **1～2 个问题点**，约 **1800～2200 汉字**。
-5. 每篇文章写入独立目录：
+5. **不要写总览流水账。** 从命中里只挑 **2～4 个真正值得挖的问题点**，合并成 **2～4 篇文章**。每篇只分析 **1～2 个问题点**，约 **1800～2200 汉字**。
+6. 每篇文章写入独立目录：
 
    `output/<主题>-<YYYY-MM-DD>/article.md`
 
    主题用短中文或英文词，去掉 `/ \ : * ? " < > |`。同日同主题加 `-2`。目录内可另放 `sources.md`（链接清单）。
-6. 更新 [output/README.md](../../../output/README.md)：最新日期在上，链到各篇文章。
-7. 按「关键词维护」决定是否改 `config/keywords.md`。
-8. 提交并推送到 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。只暂存 `output/` 和本次改过的 `config/keywords.md`。
+7. 更新 [output/README.md](../../../output/README.md)：最新日期在上，链到各篇文章。
+8. 按 keywords 文内「维护规则」决定是否改对照表（新词必须中英两列一起补）。
+9. 提交并推送到 **main**。说明：`Daily research: YYYY-MM-DD`。不要开 PR。只暂存 `output/` 和本次改过的 `config/keywords.md`。
 
 检索失败也要留下当天一篇说明文并推送，让日程有痕迹。
 
