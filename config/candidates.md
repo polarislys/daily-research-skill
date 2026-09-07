@@ -56,15 +56,15 @@
   en: Tree-Estimated Mean Prefix Value for Policy Optimization
   zh: 前缀树均值前缀价值策略优化
   first: 2026-09-06
-  last: 2026-09-06
-  days: 1
+  last: 2026-09-07
+  days: 2
   sources: 1
   urls:
     - https://arxiv.org/abs/2509.18314
   kinds: paper
   near: agent-training
   status: watching
-  note: P2T 前缀树 + 分支 token TD 修正，critic-free。排队深写。
+  note: P2T 前缀树 + 分支 token TD 修正，critic-free。2026-09-07 仍 queued，credit assignment 族重复。
 
 - token: GitHub Copilot coding agent
   en: Copilot coding agent
@@ -99,16 +99,17 @@
   en: harness engineering
   zh: 夹具工程
   first: 2026-09-06
-  last: 2026-09-06
+  last: 2026-09-07
   days: 2
-  sources: 2
+  sources: 3
   urls:
     - https://openai.com/index/harness-engineering/
     - https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-  kinds: news
+    - https://arxiv.org/abs/2609.00006
+  kinds: news,paper
   near: harness
   status: watching
-  note: 2026 行业术语，可能只作 harness id 的 alias，不新开概念 id。
+  note: 2026 行业术语。第三源是十一系统源码解剖。未满 14 天 / 3 个跑次，不晋升；可能只作 harness alias。
 
 - token: TIGPO
   en: Temporal Instance-Graph Policy Optimization
@@ -142,16 +143,17 @@
   en: credit assignment
   zh: 信用分配
   first: 2026-09-06
-  last: 2026-09-06
-  days: 1
-  sources: 2
+  last: 2026-09-07
+  days: 2
+  sources: 3
   urls:
     - https://arxiv.org/abs/2609.03383
     - https://arxiv.org/abs/2609.02236
+    - https://arxiv.org/abs/2609.00829
   kinds: paper
   near: agent-training
   status: watching
-  note: 长程稀疏奖励下给中间步打分。可能只是训练术语，先观察是否稳定出现在资讯标题。
+  note: 长程稀疏奖励下给中间步打分。HarnessEvolve 把对照点从权重改到 harness 文件。未满晋升窗，不新开 id。
 
 - token: SWE-rebench
   en: SWE-rebench
@@ -310,6 +312,93 @@
   near: context-management
   status: watching
   note: 模式名，不是协议。与 context-management 的差是「编译后的可 diff 页面 + schema」，先观察。
+
+- token: SkillGLoW
+  en: Procedural-Family Skill Consolidation
+  zh: 程序族技能巩固
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.02217
+  kinds: paper
+  near: skill-graph
+  status: watching
+  note: 全局 prior + 本地现写，按解题程序聚类。与 skill-graph 的差是「族是巩固单元，不是运行时编排图」。仅 1 篇。
+
+- token: HarnessEvolve
+  en: reference-trajectory harness self-evolution
+  zh: 参考轨迹驱动的 harness 自进化
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.00829
+  kinds: paper
+  near: skill-evolution
+  status: watching
+  note: 执行/评测/优化/门禁四模块；质量门挡泄漏与 prompt bloat。仅 1 篇，不晋升。
+
+- token: HarnessDev
+  en: benchmark for creating and evolving agent harness
+  zh: 评测对象是可运行 harness
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.01437
+  kinds: paper
+  near: agent-eval
+  status: watching
+  note: 单位从任务输出改成基础设施。queued 深写。仅 1 篇。
+
+- token: DRACO
+  en: Distributing Rubric-based Advantage for Credit Optimization
+  zh: 动态评分细则再分配步级优势
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 1
+  urls:
+    - https://arxiv.org/abs/2609.04094
+  kinds: paper
+  near: agent-training
+  status: watching
+  note: outcome-blind，无 verifier 时用动态 rubric 给 GRPO 步级优势。credit assignment 族，本日未深写。
+
+- token: Microsoft Agent Framework Harness
+  en: Microsoft Agent Framework Harness
+  zh: 微软 Agent 框架默认夹具
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 2
+  urls:
+    - https://learn.microsoft.com/en-us/agent-framework/agents/harness
+    - https://devblogs.microsoft.com/agent-framework/the-microsoft-agent-framework-harness-is-now-released/
+  kinds: news
+  near: harness
+  status: watching
+  note: 产品名，应进 keywords 产品区待第二轮资讯再确认。与 DeepSeek-Harness 的差是「默认夹具可关」而不是「一切皆插件」。
+
+- token: wiki incident
+  en: OpenAI wiki incident
+  zh: OpenAI wiki 事件
+  first: 2026-09-07
+  last: 2026-09-07
+  days: 1
+  sources: 3
+  urls:
+    - https://collusion.wiki/
+    - https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/
+    - https://techcrunch.com/2026/09/05/openai-confirms-wiki-incident-says-its-working-on-a-framework-for-more-disclosure/
+  kinds: news
+  near: sandbox
+  status: watching
+  note: 事件名，不是新概念。与 sandbox 的差是「评测读网策略被旧协议与代理例外写成写通道」。不新开 id。
 
 ## 已晋升
 

@@ -9,7 +9,17 @@ ls output/*.md
 
 ## 收件箱
 
+- [2026-09-07](收件箱-2026-09-07.md)
 - [2026-09-06](收件箱-2026-09-06.md)
+
+## 2026-09-07 文章
+
+| 形态 | 文章 |
+|---|---|
+| 产品剖析 | [Microsoft-Harness-默认夹具不是聊天环](Microsoft-Harness-默认夹具不是聊天环-2026-09-07.md) |
+| 新方法 | [SkillGLoW-技能按程序族压缩](SkillGLoW-技能按程序族压缩-2026-09-07.md) |
+| 新方法 | [HarnessEvolve-参考轨迹修credit-assignment](HarnessEvolve-参考轨迹修credit-assignment-2026-09-07.md) |
+| 新闻动态 | [OpenAI-wiki事件-读权限写成了写通道](OpenAI-wiki事件-读权限写成了写通道-2026-09-07.md) |
 
 ## 2026-09-06 文章
 
